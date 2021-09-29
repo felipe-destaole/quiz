@@ -5,6 +5,7 @@ from util import Alternativas, Botao, Pergunta
 
 pg.init()
 
+
 class Game:
     def __init__(self):
         pg.init()
@@ -18,15 +19,15 @@ class Game:
         self.perguntas = [
             Pergunta("pergunta1", "resposta1", Alternativas.A),
             Pergunta("pergunta1", "resposta1", Alternativas.B),
-            ]
+        ]
         self.numero_pergunta = 0
         self.pontuacao = 0
         self.pergunta_atual = self.perguntas[0]
         self.botoes_aletrnativa = [
-            Botao("alternativa1", 40, 490),
-            Botao("alternativa1", 40, 685),
-            Botao("alternativa1", 460, 490),
-            Botao("alternativa1", 460, 685),
+            Botao("alternativa1", MARGEM_BOTAO, ALTURA_ENUNCIADO + MARGEM_BOTAO, LARGURA_BOTAO, ALTURA_BOTAO),
+            Botao("alternativa1", MARGEM_BOTAO, ALTURA_ENUNCIADO + 1.5*MARGEM_BOTAO + ALTURA_BOTAO, LARGURA_BOTAO, ALTURA_BOTAO),
+            Botao("alternativa1", 1.5*MARGEM_BOTAO + LARGURA_BOTAO, ALTURA_ENUNCIADO + MARGEM_BOTAO, LARGURA_BOTAO, ALTURA_BOTAO),
+            Botao("alternativa1", 1.5*MARGEM_BOTAO + LARGURA_BOTAO, ALTURA_ENUNCIADO + 1.5*MARGEM_BOTAO + ALTURA_BOTAO, LARGURA_BOTAO, ALTURA_BOTAO),
         ]
 
         self.font_name = pg.font.match_font(FONT_NAME)
@@ -70,7 +71,7 @@ class Game:
         self.win.fill(BRANCO)
 
         self.pergunta_atual.draw(self.win)
-        self.draw_text(f"Pontuação: {self.pontuacao}", 22, BRANCO, WIDTH / 2, 5)
+        self.draw_text(f"Pontuação: {self.pontuacao}", 22, BRANCO, WIDTH - 60, 5)
 
         for botao in self.botoes_aletrnativa:
             botao.draw(self.win)
@@ -79,17 +80,18 @@ class Game:
 
     def escolher_respota(self, mouse_pos):
         x, y = mouse_pos
-        if 40 <= x <= 440 and 490 <= y <= 665:
+        if MARGEM_BOTAO <= x <= MARGEM_BOTAO + LARGURA_BOTAO and ALTURA_ENUNCIADO + MARGEM_BOTAO <= y <= HEIGHT - 1.5*MARGEM_BOTAO - ALTURA_BOTAO:
             return Alternativas.A
-        if 460 <= x <= 860 and 490 <= y <= 665:
+        if 1.5*MARGEM_BOTAO + LARGURA_BOTAO <= x <= WIDTH - MARGEM_BOTAO and ALTURA_ENUNCIADO + MARGEM_BOTAO <= y <= HEIGHT - 1.5*MARGEM_BOTAO - ALTURA_BOTAO:
             return Alternativas.B
-        if 40 <= x <= 440 and 685 <= y <= 860:
+        if MARGEM_BOTAO <= x <= MARGEM_BOTAO + LARGURA_BOTAO and HEIGHT - MARGEM_BOTAO - ALTURA_BOTAO <= y <= HEIGHT - MARGEM_BOTAO:
             return Alternativas.C
-        if 460 <= x <= 860 and 685 <= y <= 860:
+        if 1.5*MARGEM_BOTAO + LARGURA_BOTAO <= x <= WIDTH - MARGEM_BOTAO and HEIGHT - MARGEM_BOTAO - ALTURA_BOTAO <= y <= HEIGHT - MARGEM_BOTAO:
             return Alternativas.D
 
     def verificar_resposta(self, alternativa):
-        if not alternativa: return
+        if not alternativa:
+            return
         if alternativa == self.pergunta_atual.resposta:
             pg.event.post(pg.event.Event(RESPOSTA_CERTA))
         else:
@@ -132,12 +134,10 @@ class Game:
         )
         pg.display.flip()
         self.wait_for_key()
-        
+
     def game_over(self):
-        cor = (234,195,78)
-        frase = (
-            f"Parabens, você acertou {self.pontuacao} de {len(self.perguntas)}! Continue assim"
-        )
+        cor = (234, 195, 78)
+        frase = f"Parabens, você acertou {self.pontuacao} de {len(self.perguntas)}! Continue assim"
         self.win.fill(cor)
         self.draw_text("MÉTODOS DE ESTUDO", 48, BRANCO, WIDTH / 2, HEIGHT / 4)
         self.draw_text(frase, 22, BRANCO, WIDTH / 2, HEIGHT * 2 / 4)
@@ -151,7 +151,7 @@ class Game:
         pg.display.flip()
         waiting = True
         while waiting:
-            self.clock.tick(60)
+            self.clock.tick(FPS)
             for event in pg.event.get():
                 if event.type == pg.QUIT:
                     waiting = False
@@ -167,7 +167,7 @@ class Game:
     def wait_for_key(self):
         waiting = True
         while waiting:
-            self.clock.tick(60)
+            self.clock.tick(FPS)
             for event in pg.event.get():
                 if event.type == pg.QUIT:
                     waiting = False

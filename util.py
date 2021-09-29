@@ -12,16 +12,16 @@ class Alternativas(Enum):
     
 class Pergunta:
     def __init__(self, pergunta: str, alternativas: str, resposta: Alternativas):
-        self.pergunta = pg.transform.scale(pg.image.load(os.path.join("assets", pergunta + '.png')), (WIDTH, 200))
-        self.alternativas = pg.transform.scale(pg.image.load(os.path.join("assets", alternativas + '.png')), (WIDTH, 250))
+        self.pergunta = pg.transform.scale(pg.image.load(os.path.join("assets", pergunta + '.png')), (WIDTH, ALTURA_PERGUNTA))
+        self.alternativas = pg.transform.scale(pg.image.load(os.path.join("assets", alternativas + '.png')), (WIDTH, ALTURA_ALTERNATIVA))
         self.resposta = resposta
 
     def draw(self, win):
         win.blit(self.pergunta, (0,0))
-        win.blit(self.alternativas, (0, 200))
+        win.blit(self.alternativas, (0, ALTURA_PERGUNTA))
 
 class Botao():
-    def __init__(self, image, x, y, width = 400, height = 175, certa = False):
+    def __init__(self, image, x, y, width, height):
         self.image = pg.transform.scale(pg.image.load(os.path.join("assets", image + '.png')), (width, height))
         self.x = x
         self.y = y
