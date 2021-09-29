@@ -2,14 +2,14 @@ import pygame as pg
 import os
 
 TITULO = "Quiz"
-FONT_NAME = 'arial'
+FONT_NAME = "arial"
 FPS = 60
 
 BRANCO = (255, 255, 255)
 VERMELHO = (255, 20, 10)
 VERDE = (20, 200, 10)
 
-BGCOLOR = (255, 0, 45)
+BGCOLOR = (0, 6, 255)
 WIDTH, HEIGHT = 700, 700
 
 ALTURA_PERGUNTA = 150
@@ -23,4 +23,3 @@ MARGEM_BOTAO = 20
 
 RESPOSTA_CERTA = pg.USEREVENT + 1
 RESPOSTA_ERRADA = pg.USEREVENT + 2
-

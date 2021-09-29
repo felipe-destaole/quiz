@@ -17,8 +17,16 @@ class Game:
         self.running = True
 
         self.perguntas = [
-            Pergunta("pergunta1", "resposta1", Alternativas.A),
-            Pergunta("pergunta1", "resposta1", Alternativas.B),
+            Pergunta("pergunta1", Alternativas.A),
+            Pergunta("pergunta2", Alternativas.B),
+            Pergunta("pergunta3", Alternativas.D),
+            Pergunta("pergunta4", Alternativas.A),
+            Pergunta("pergunta5", Alternativas.C),
+            Pergunta("pergunta6", Alternativas.B),
+            Pergunta("pergunta7", Alternativas.D),
+            Pergunta("pergunta8", Alternativas.A),
+            Pergunta("pergunta9", Alternativas.A),
+            Pergunta("pergunta10", Alternativas.B),
         ]
         self.numero_pergunta = 0
         self.pontuacao = 0
@@ -68,7 +76,7 @@ class Game:
                 self.proxima_questao()
 
     def draw(self):
-        self.win.fill(BRANCO)
+        self.win.fill(BGCOLOR)
 
         self.pergunta_atual.draw(self.win)
         self.draw_text(f"Pontuação: {self.pontuacao}", 22, BRANCO, WIDTH - 60, 5)

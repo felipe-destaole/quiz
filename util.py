@@ -11,14 +11,12 @@ class Alternativas(Enum):
     D = 3
     
 class Pergunta:
-    def __init__(self, pergunta: str, alternativas: str, resposta: Alternativas):
-        self.pergunta = pg.transform.scale(pg.image.load(os.path.join("assets", pergunta + '.png')), (WIDTH, ALTURA_PERGUNTA))
-        self.alternativas = pg.transform.scale(pg.image.load(os.path.join("assets", alternativas + '.png')), (WIDTH, ALTURA_ALTERNATIVA))
+    def __init__(self, pergunta: str, resposta: Alternativas):
+        self.pergunta = pg.transform.scale(pg.image.load(os.path.join("assets", pergunta + '.jpeg')), (WIDTH, ALTURA_PERGUNTA + ALTURA_ALTERNATIVA))
         self.resposta = resposta
 
     def draw(self, win):
         win.blit(self.pergunta, (0,0))
-        win.blit(self.alternativas, (0, ALTURA_PERGUNTA))
 
 class Botao():
     def __init__(self, image, x, y, width, height):
