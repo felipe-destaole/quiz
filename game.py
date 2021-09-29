@@ -28,6 +28,7 @@ class Game:
             Pergunta("pergunta9", Alternativas.A),
             Pergunta("pergunta10", Alternativas.B),
         ]
+        
         self.numero_pergunta = 0
         self.pontuacao = 0
         self.pergunta_atual = self.perguntas[0]
