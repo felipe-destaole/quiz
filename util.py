@@ -28,4 +28,3 @@ class Botao():
     
     def draw(self, win):
         win.blit(self.image, (self.x, self.y))
-
