@@ -1,7 +1,7 @@
 import pygame as pg
 import os
-from settings import *
-from util import Alternativas, Botao, Pergunta
+from data.settings import *
+from data.util import Alternativas, Botao, Pergunta
 
 pg.init()
 
@@ -117,6 +117,9 @@ class Game:
         # game splash/start screen
         self.win.fill(BGCOLOR)
         self.draw_text("MÉTODOS DE ESTUDO", 48, BRANCO, WIDTH / 2, HEIGHT / 4)
+        self.draw_text("Regras: acerte as perguntas", 22, BRANCO, WIDTH / 2, HEIGHT * 3 / 5)
+        self.draw_text("Grupo: Felipão, Davi, Dosseau, Otávio e Beri Beri", 22, BRANCO, WIDTH / 2, HEIGHT * 3 / 5 + 30)
+        self.draw_text("Objetivo: entender sobre boas praticas de estudo e conhecer novos métodos de estudo", 22, BRANCO, WIDTH / 2, HEIGHT * 3 / 5 + 60)
         self.draw_text(
             "Aperte qualquer tecla para começar", 22, BRANCO, WIDTH / 2, HEIGHT * 3 / 4
         )
